@@ -5,6 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.odb.susy.rgb.MainActivity">
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:max="3000"/>
+
+
+    <RelativeLayout
+        android:id="@+id/outRPM"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/seekBar">
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/content_color"
@@ -12,7 +30,8 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_above="@+id/seekBar">
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -27,14 +46,7 @@
                android:textSize="30dp"
                android:text="REV"/>
 
-           <SeekBar
-               android:id="@+id/seekBar"
-               android:layout_width="match_parent"
-               android:layout_height="100dp"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true"
-               android:max="3000"/>
+
        </LinearLayout>
 
         <LinearLayout
