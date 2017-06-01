@@ -14,10 +14,34 @@
         tools:layout_editor_absoluteX="8dp"
         android:gravity="center">
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <TextView
+               android:id="@+id/rev_text"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textAlignment="center"
+               android:textSize="30dp"
+               android:text="REV"/>
+
+           <SeekBar
+               android:id="@+id/seekBar"
+               android:layout_width="match_parent"
+               android:layout_height="100dp"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true"
+               android:max="3000"/>
+       </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_marginTop="50dp"
@@ -88,14 +112,6 @@
 
         </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:max="100"/>
 
 
     </RelativeLayout>

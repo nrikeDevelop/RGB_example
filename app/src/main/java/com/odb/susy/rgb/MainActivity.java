@@ -10,16 +10,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int TIME = 8;
+    int REV = 8;
 
     RelativeLayout contentColor;
     SeekBar seekBar ;
+    TextView revText;
     TextView redText;
     TextView greenText;
     TextView blueText;
 
     public void setUI(){
         contentColor = (RelativeLayout) findViewById(R.id.content_color);
+        revText = (TextView) findViewById(R.id.rev_text);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         redText = (TextView) findViewById(R.id.value_red);
         greenText = (TextView) findViewById(R.id.value_green);
@@ -57,7 +59,22 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TIME = progress/10;
+                REV = progress;
+
+                //GREEN > YELLOW
+                if(REV < 1500){
+                    System.out.println((progress*255)/1500);
+                    setOutText(revText,String.valueOf(progress + " rev "));
+                    setOutColor(contentColor,(progress*255)/1500,255,0);
+                }
+
+                if(REV >= 1500 && REV <=3000){
+                    System.out.println((progress*255)/1500);
+                    setOutText(revText,String.valueOf(progress + " rev "));
+                    setOutColor(contentColor,255,255-(progress*255)/1500,0);
+                }
+
+
             }
 
             @Override
@@ -70,101 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        final Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                boolean exit = false;
-                while (!exit){
-                    //RED +
-                    for (int r = 0; r<= 255; r++){
-                        try{
-
-                            setOutColor(contentColor,r,0,0);
-                            setOutText(redText,String.valueOf(r));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //GREEN +
-                    for (int g = 0; g<= 255; g++){
-                        try{
-
-                            setOutColor(contentColor,255,g,0);
-                            setOutText(greenText,String.valueOf(g));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //BLUE +
-                    for (int b = 0; b<= 255; b++){
-                        try{
-
-                            setOutColor(contentColor,255,255,b);
-                            setOutText(blueText,String.valueOf(b));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //RED -
-                    for (int r = 255; r>= 0; r--){
-                        try{
-
-                            setOutColor(contentColor,r,255,255);
-                            setOutText(redText,String.valueOf(r));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //GREEN -
-                    for (int g = 255; g>= 0; g--){
-                        try{
-
-                            setOutColor(contentColor,0,g,255);
-                            setOutText(greenText,String.valueOf(g));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //BLUE +
-                    for (int b = 255; b>= 0; b--){
-                        try{
-
-                            setOutColor(contentColor,0,0,b);
-                            setOutText(blueText,String.valueOf(b));
-
-                            Thread.currentThread().sleep(TIME);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }
-        });
-        thread.start();
 
     }
 
