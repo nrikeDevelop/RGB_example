@@ -62,16 +62,17 @@ public class MainActivity extends AppCompatActivity {
                 REV = progress;
 
                 //GREEN > YELLOW
-                if(REV < 1500){
+                if(REV <= 1500){
                     System.out.println((progress*255)/1500);
                     setOutText(revText,String.valueOf(progress + " rev "));
                     setOutColor(contentColor,(progress*255)/1500,255,0);
                 }
 
-                if(REV >= 1500 && REV <=3000){
+
+                if(REV >= 1500){
                     System.out.println((progress*255)/1500);
                     setOutText(revText,String.valueOf(progress + " rev "));
-                    setOutColor(contentColor,255,255-(progress*255)/1500,0);
+                    setOutColor(contentColor,255,254-(progress*255)/1500,0);
                 }
 
 
